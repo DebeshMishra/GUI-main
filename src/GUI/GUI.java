@@ -2,14 +2,14 @@ package GUI;
 
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+//import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionListener;
 
 
 public class GUI {
@@ -17,7 +17,7 @@ public class GUI {
 	public GUI(){
 		JFrame frame = new JFrame();
 		
-		JButton button = new JButton("Run");
+//		JButton button = new JButton("Run");
 //		button.addActionListener((ActionListener) this);
 		
 //		JLabel label =  new JLabel("dummy");
