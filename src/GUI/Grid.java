@@ -2,9 +2,14 @@ package GUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Random;
@@ -43,7 +48,6 @@ public class Grid extends JPanel {
 		generateDots(g2);
 	}
 	
-	
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame("Grid");
@@ -52,8 +56,27 @@ public class Grid extends JPanel {
 		panel.setLayout(new GridLayout(0,1));
 
 		frame.add(panel, BorderLayout.CENTER);
-		//Menu menu = new Menu(frame);
-		//frame.add(menu);
+
+		JMenuBar menubar = new JMenuBar();
+        frame.setJMenuBar(menubar);
+
+        JMenu file = new JMenu("File");
+        menubar.add(file);
+        JMenuItem load = new JMenuItem("Load");
+        file.add(load);
+        JMenuItem save = new JMenuItem("Save");
+        file.add(save);
+        JMenuItem exit = new JMenuItem("Exit");
+        file.add(exit);
+
+        class exitAction implements ActionListener {
+            public void actionPerformed (ActionEvent e) {
+                System.exit(0);
+            }
+        }
+        
+        exit.addActionListener(new exitAction());
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Grid");
 		frame.pack();
