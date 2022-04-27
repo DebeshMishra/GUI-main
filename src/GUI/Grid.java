@@ -51,6 +51,8 @@ public class Grid extends JPanel {
 	
 	public static void main(String[] args)
 	{
+		
+		//this code works and am currently running test
 		DBSCAN test = new DBSCAN(10,10, 3, 10);
 
 		JFrame frame = new JFrame("Grid");
