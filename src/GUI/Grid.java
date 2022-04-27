@@ -7,6 +7,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import DBSCAN.DBSCAN;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,6 +52,8 @@ public class Grid extends JPanel {
 	
 	public static void main(String[] args)
 	{
+		DBSCAN test = new DBSCAN(10,10, 3, 10);
+
 		JFrame frame = new JFrame("Grid");
 		Grid panel = new Grid();
 		panel.setBorder(BorderFactory.createEmptyBorder(720,720,0,0));
