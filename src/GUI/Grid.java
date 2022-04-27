@@ -7,7 +7,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import DBSCAN.DBSCAN;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
