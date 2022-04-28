@@ -29,8 +29,8 @@ public class Main {
         JMenuItem exit = new JMenuItem("Exit");
         file.add(exit);
 
-        exit.addActionListener(new action());
-        save.addActionListener(new action());
+        exit.addActionListener(new Action());
+        save.addActionListener(new Action());
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Grid");
@@ -40,7 +40,7 @@ public class Main {
 //
 //        for (int i = 0; i < 720; i++){
 //            for (int j = 0; j < 720; j++){
-//                if (panel.gridPoints[i][j] == 1){
+//                if (panel.xyPoints[i][j] == 1){
 //                    count[0]++;
 //                }
 //            }

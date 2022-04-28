@@ -25,7 +25,7 @@ public class Grid extends JPanel {
 	private final int GRID_WIDTH = 720;
 	private final int GRID_HEIGHT = 720;
 
-	public int[][] gridPoints = new int[GRID_HEIGHT][GRID_WIDTH];
+	public int[][] xyPoints = new int[GRID_HEIGHT][GRID_WIDTH];
 	public int[][] dotCoordinates = new int[MAX_DOTS][2];
 
 	public void drawDots(Graphics2D g2){
@@ -42,7 +42,7 @@ public class Grid extends JPanel {
 			int x = ran.nextInt(715);
 			int y = ran.nextInt(715);
 
-			gridPoints[x][y] = 1;
+			xyPoints[x][y] = 1;
 			dotCoordinates[i][0] = x;
 			dotCoordinates[i][1] = y;
 		}

@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-class action implements ActionListener {
+class Action implements ActionListener {
     public void actionPerformed (ActionEvent e) {
         if(e.getSource()==exit)
             System.exit(0);
