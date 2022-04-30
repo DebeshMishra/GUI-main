@@ -1,5 +1,6 @@
 package GUI;
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
@@ -60,6 +61,22 @@ public class Grid extends JPanel {
 		this.add(runButton);
 	}
 
+	public void addClearButton(){
+		JButton clearButton = new JButton("Clear");
+		clearButton.setBounds(300,10,85,20);
+
+		clearButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				dotCoordinates = new ArrayList();
+				repaint();
+			}
+		});
+
+		this.add(clearButton);
+	}
+
+
 	public void generateCoordinates(){
 		dotCoordinates = new ArrayList<>();
 		for (int i = 0; i < MAX_DOTS; i++){
@@ -72,8 +89,6 @@ public class Grid extends JPanel {
 		}
 	}
 
-	//TODO: Random button to regenerate pattern after clear or on click
-	
 	public Grid(){
 		super();
 		generateCoordinates();
@@ -98,6 +113,7 @@ public class Grid extends JPanel {
 		drawDots(g2);
 		addDbScanButton();
 		addRandomizeButton();
+		addClearButton();
 	}
 
 
