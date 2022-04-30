@@ -29,10 +29,11 @@ public class Main {
         JMenuItem exit = new JMenuItem("Exit");
         file.add(exit);
         
-        Action action = new Action(load, save, exit, panel.xyPoints);
+        Action action = new Action(load, save, exit, panel);
 
         exit.addActionListener(action);
         save.addActionListener(action);
+        load.addActionListener(action);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Grid");

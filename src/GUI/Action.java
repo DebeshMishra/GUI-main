@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Action implements ActionListener {
@@ -14,13 +15,13 @@ class Action implements ActionListener {
 	JMenuItem load;
 	JMenuItem save;
 	JMenuItem exit;
-	int[][] xyPoints;
+	Grid panel;
 	
-	Action(JMenuItem load, JMenuItem save, JMenuItem exit, int[][] xyPoints){
+	Action(JMenuItem load, JMenuItem save, JMenuItem exit, Grid panel){
 		this.load = load;
 		this.save = save;
 		this.exit = exit;
-		this.xyPoints = xyPoints;
+		this.panel = panel;
 	}
 	
     public void actionPerformed (ActionEvent e) {
@@ -40,7 +41,7 @@ class Action implements ActionListener {
 
                     String saveStr = new String();
 
-                    for(int[] a: xyPoints) {
+                    for(int[] a: panel.dotCoordinates) {
                         saveStr +=a[0]+","+a[1]+"\n";
                     }
 
@@ -70,9 +71,15 @@ class Action implements ActionListener {
                 try {
                     fileIn = new Scanner(file);
                     if(file.isFile()) {
+                    	panel.dotCoordinates = new ArrayList<>();
                         while(fileIn.hasNextLine()) {
-                            String line = fileIn.nextLine()+"\n";
-                            System.out.println(line);
+                            String line = fileIn.nextLine();
+                            if(line!="") {
+                            	String[] splitLine = line.split(",");
+                            	panel.dotCoordinates.add(new int[] {Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1])});
+                            	panel.repaint();
+                            }
+                            	//System.out.println(line);
                         }
                     }
                 } catch (FileNotFoundException e1) {
