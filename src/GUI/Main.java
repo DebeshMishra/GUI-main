@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         //this code works and am currently running test
-        DBSCAN test = new DBSCAN(10, 10, 3, 10);
+        //DBSCAN test = new DBSCAN(10, 10, 3, 10);
 
         JFrame frame = new JFrame("Grid");
         Grid panel = new Grid();
@@ -16,7 +16,8 @@ public class Main {
         panel.setLayout(new GridLayout(0, 1));
 
         frame.add(panel, BorderLayout.CENTER);
-
+        
+        //adding the menu bar and corresponding items
         JMenuBar menubar = new JMenuBar();
         frame.setJMenuBar(menubar);
 
@@ -29,6 +30,7 @@ public class Main {
         JMenuItem exit = new JMenuItem("Exit");
         file.add(exit);
         
+        //calling the constructor from Action class for actionListener
         Action action = new Action(load, save, exit, panel);
 
         exit.addActionListener(action);
@@ -39,15 +41,5 @@ public class Main {
         frame.setTitle("Grid");
         frame.pack();
         frame.setVisible(true);
-//        final int[] count = {0};
-//
-//        for (int i = 0; i < 720; i++){
-//            for (int j = 0; j < 720; j++){
-//                if (panel.xyPoints[i][j] == 1){
-//                    count[0]++;
-//                }
-//            }
-//        }
-//        System.out.println(count[0]);
         }
     }

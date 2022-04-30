@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 class Action implements ActionListener {
 	
+	//global variables to be used
 	JMenuItem load;
 	JMenuItem save;
 	JMenuItem exit;
@@ -32,15 +33,18 @@ class Action implements ActionListener {
             int response = fileChooser.showSaveDialog(null);
 
             if(response == JFileChooser.APPROVE_OPTION) {
-                File file;
                 PrintWriter fileOut = null;
-
-                file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                File file = fileChooser.getSelectedFile();
+                String filename = fileChooser.getSelectedFile().toString();
+                if (!filename.endsWith(".txt")) {
+                    file = new File(file.toString() + ".txt");  // append .txt if the file is saved without .txt at the end
+                }
                 try {
                     fileOut = new PrintWriter(file);
 
                     String saveStr = new String();
-
+                    
+                    //saving the coordinates of the dots to a text file
                     for(int[] a: panel.dotCoordinates) {
                         saveStr +=a[0]+","+a[1]+"\n";
                     }
@@ -59,7 +63,7 @@ class Action implements ActionListener {
         if(e.getSource()==load) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("."));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt"); //adding a filter to only load .txt files
             fileChooser.setFileFilter(filter);
 
             int response = fileChooser.showOpenDialog(null);
@@ -71,7 +75,10 @@ class Action implements ActionListener {
                 try {
                     fileIn = new Scanner(file);
                     if(file.isFile()) {
+                    	//if the file is valid, clean up the existing dotCoordinates
                     	panel.dotCoordinates = new ArrayList<>();
+                    	
+                    	//storing all the data from .txt file to dotCoordinates and then repainting the canvas
                         while(fileIn.hasNextLine()) {
                             String line = fileIn.nextLine();
                             if(line!="") {
@@ -79,7 +86,6 @@ class Action implements ActionListener {
                             	panel.dotCoordinates.add(new int[] {Integer.parseInt(splitLine[0]), Integer.parseInt(splitLine[1])});
                             	panel.repaint();
                             }
-                            	//System.out.println(line);
                         }
                     }
                 } catch (FileNotFoundException e1) {
