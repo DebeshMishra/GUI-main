@@ -91,7 +91,8 @@ public class Grid extends JPanel {
 
 	public Grid(){
 		super();
-		generateCoordinates();
+		addClearButton();
+		//generateCoordinates();
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(final MouseEvent e) {
