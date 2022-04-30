@@ -91,7 +91,8 @@ public class Grid extends JPanel {
 
 	public Grid(){
 		super();
-		addClearButton();
+		dotCoordinates = new ArrayList();
+		repaint();
 		//generateCoordinates();
 		this.addMouseListener(new MouseAdapter() {
 			@Override
