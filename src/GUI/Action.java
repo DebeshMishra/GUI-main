@@ -10,6 +10,19 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 class Action implements ActionListener {
+	
+	JMenuItem load;
+	JMenuItem save;
+	JMenuItem exit;
+	int[][] xyPoints;
+	
+	Action(JMenuItem load, JMenuItem save, JMenuItem exit, int[][] xyPoints){
+		this.load = load;
+		this.save = save;
+		this.exit = exit;
+		this.xyPoints = xyPoints;
+	}
+	
     public void actionPerformed (ActionEvent e) {
         if(e.getSource()==exit)
             System.exit(0);
@@ -59,7 +72,7 @@ class Action implements ActionListener {
                     if(file.isFile()) {
                         while(fileIn.hasNextLine()) {
                             String line = fileIn.nextLine()+"\n";
-                            //textArea.append(line);
+                            System.out.println(line);
                         }
                     }
                 } catch (FileNotFoundException e1) {
