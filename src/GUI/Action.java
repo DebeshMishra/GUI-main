@@ -37,11 +37,10 @@ class Action implements ActionListener {
                 File file = fileChooser.getSelectedFile();
                 String filename = fileChooser.getSelectedFile().toString();
                 if (!filename.endsWith(".txt")) {
-                    file = new File(file.toString() + ".txt");  // append .txt if the file is saved without .txt at the end
+                    file = new File(file.toString() + ".dhmj");  // append .dhmj if the file is saved without .dhmj at the end
                 }
                 try {
                     fileOut = new PrintWriter(file);
-
                     String saveStr = new String();
                     
                     //saving the coordinates of the dots to a text file
@@ -63,7 +62,7 @@ class Action implements ActionListener {
         if(e.getSource()==load) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("."));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt"); //adding a filter to only load .txt files
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("DHMJ files", "dhmj"); //adding a filter to only load .dhmj files
             fileChooser.setFileFilter(filter);
 
             int response = fileChooser.showOpenDialog(null);
@@ -78,7 +77,7 @@ class Action implements ActionListener {
                     	//if the file is valid, clean up the existing dotCoordinates
                     	panel.dotCoordinates = new ArrayList<>();
                     	
-                    	//storing all the data from .txt file to dotCoordinates and then repainting the canvas
+                    	//storing all the data from .dhmj file to dotCoordinates and then repainting the canvas
                         while(fileIn.hasNextLine()) {
                             String line = fileIn.nextLine();
                             if(line!="") {
