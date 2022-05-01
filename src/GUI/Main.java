@@ -30,12 +30,24 @@ public class Main {
         JMenuItem exit = new JMenuItem("Exit");
         file.add(exit);
         
+        JMenu act = new JMenu("Action");
+        menubar.add(act);
+        JMenuItem randomize = new JMenuItem("Randomize");
+        act.add(randomize);
+        JMenuItem clear = new JMenuItem("Clear");
+        act.add(clear);
+        JMenuItem dbScan = new JMenuItem("DBScan");
+        act.add(dbScan);
+        
         //calling the constructor from Action class for actionListener
-        Action action = new Action(load, save, exit, panel);
+        Action action = new Action(load, save, exit, randomize, clear, dbScan, panel);
 
         exit.addActionListener(action);
         save.addActionListener(action);
         load.addActionListener(action);
+        randomize.addActionListener(action);
+        clear.addActionListener(action);
+        dbScan.addActionListener(action);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Grid");

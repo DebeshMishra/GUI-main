@@ -34,7 +34,7 @@ public class Grid extends JPanel {
 		}
 	}
 
-	public void addDbScanButton(){
+	/*public void addDbScanButton(){
 		JButton runButton = new JButton("DdScan");
 		runButton.setBounds(10,10,85,20);
 
@@ -74,7 +74,7 @@ public class Grid extends JPanel {
 		});
 
 		this.add(clearButton);
-	}
+	}*/
 
 
 	public void generateCoordinates(){
@@ -113,9 +113,9 @@ public class Grid extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		drawDots(g2);
-		addDbScanButton();
-		addRandomizeButton();
-		addClearButton();
+		//addDbScanButton();
+		//addRandomizeButton();
+		//addClearButton();
 	}
 
 

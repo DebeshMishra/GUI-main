@@ -16,18 +16,35 @@ class Action implements ActionListener {
 	JMenuItem load;
 	JMenuItem save;
 	JMenuItem exit;
+	JMenuItem randomize;
+	JMenuItem clear;
+	JMenuItem dbScan;
 	Grid panel;
 	
-	Action(JMenuItem load, JMenuItem save, JMenuItem exit, Grid panel){
+	Action(JMenuItem load, JMenuItem save, JMenuItem exit, JMenuItem randomize, JMenuItem clear, JMenuItem dbScan, Grid panel){
 		this.load = load;
 		this.save = save;
 		this.exit = exit;
 		this.panel = panel;
+		this.randomize = randomize;
+		this.clear = clear;
+		this.dbScan = dbScan;
 	}
 	
     public void actionPerformed (ActionEvent e) {
         if(e.getSource()==exit)
             System.exit(0);
+        if(e.getSource()==randomize) {
+        	panel.generateCoordinates();
+			panel.repaint();
+        }
+        if(e.getSource()==clear) {
+        	panel.dotCoordinates = new ArrayList<>();
+			panel.repaint();
+        }
+        if(e.getSource()==dbScan) {
+        	//call dbScan class here
+        }
         if(e.getSource()==save) {
             JFileChooser fileChooser = new JFileChooser();
             int response = fileChooser.showSaveDialog(null);
