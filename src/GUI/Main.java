@@ -40,7 +40,7 @@ public class Main {
         act.add(clear);
         
         //calling the constructor from Action class for actionListener
-        Action action = new Action(load, save, exit, randomize, clear, dbScan, panel);
+        Action action = new Action(load, save, exit, randomize, clear, dbScan, panel, frame);
 
         exit.addActionListener(action);
         save.addActionListener(action);

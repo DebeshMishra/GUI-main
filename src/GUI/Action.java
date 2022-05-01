@@ -20,8 +20,9 @@ class Action implements ActionListener {
 	JMenuItem clear;
 	JMenuItem dbScan;
 	Grid panel;
+	JFrame frame;
 	
-	Action(JMenuItem load, JMenuItem save, JMenuItem exit, JMenuItem randomize, JMenuItem clear, JMenuItem dbScan, Grid panel){
+	Action(JMenuItem load, JMenuItem save, JMenuItem exit, JMenuItem randomize, JMenuItem clear, JMenuItem dbScan, Grid panel, JFrame frame){
 		this.load = load;
 		this.save = save;
 		this.exit = exit;
@@ -29,6 +30,7 @@ class Action implements ActionListener {
 		this.randomize = randomize;
 		this.clear = clear;
 		this.dbScan = dbScan;
+		this.frame = frame;
 	}
 	
     public void actionPerformed (ActionEvent e) {
@@ -43,7 +45,10 @@ class Action implements ActionListener {
 			panel.repaint();
         }
         if(e.getSource()==dbScan) {
-        	//call dbScan class here
+        	RunModal modal = new RunModal(frame,"Distance");
+        	modal.setModal(true);
+        	modal.setVisible(true);
+        	System.out.println("Distance entered "+modal.getValue());
         }
         if(e.getSource()==save) {
             JFileChooser fileChooser = new JFileChooser();
