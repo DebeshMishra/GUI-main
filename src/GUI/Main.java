@@ -32,12 +32,12 @@ public class Main {
         
         JMenu act = new JMenu("Action");
         menubar.add(act);
+        JMenuItem dbScan = new JMenuItem("Run");
+        act.add(dbScan);
         JMenuItem randomize = new JMenuItem("Randomize");
         act.add(randomize);
         JMenuItem clear = new JMenuItem("Clear");
         act.add(clear);
-        JMenuItem dbScan = new JMenuItem("DBScan");
-        act.add(dbScan);
         
         //calling the constructor from Action class for actionListener
         Action action = new Action(load, save, exit, randomize, clear, dbScan, panel);
