@@ -23,7 +23,7 @@ public class RunModal extends JDialog {
 		Container dialogContent = getContentPane();
 		dialogContent.setLayout(new FlowLayout());
 		
-		add(new JLabel("Enter Distance:"));
+		add(new JLabel("Enter Distance (in pixels):"));
 		add(valueField);
 		add(btnOK);
 		
