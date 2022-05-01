@@ -53,7 +53,7 @@ class Action implements ActionListener {
                 PrintWriter fileOut = null;
                 File file = fileChooser.getSelectedFile();
                 String filename = fileChooser.getSelectedFile().toString();
-                if (!filename.endsWith(".txt")) {
+                if (!filename.endsWith(".dhmj")) {
                     file = new File(file.toString() + ".dhmj");  // append .dhmj if the file is saved without .dhmj at the end
                 }
                 try {

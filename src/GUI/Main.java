@@ -53,5 +53,5 @@ public class Main {
         frame.setTitle("Grid");
         frame.pack();
         frame.setVisible(true);
-        }
     }
+}
