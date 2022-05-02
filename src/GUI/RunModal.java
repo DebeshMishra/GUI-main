@@ -19,25 +19,24 @@ public class RunModal extends JDialog {
 	
 	public RunModal(JFrame owner, String title) {
 		super(owner,title);
-		setBounds(100,100,300,100);
+		setBounds(100,100,300,150);
 		Container dialogContent = getContentPane();
 		dialogContent.setLayout(new FlowLayout());
 		
 		add(new JLabel("Enter Distance (in pixels):"));
 		add(valueField);
 		add(btnOK);
-		
+		//action listner for the OK button 
 		btnOK.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				setValue(Integer.parseInt(valueField.getText()));
 				RunModal.this.setVisible(false);
 			}
 		});
 	}
-	
+	//getters and setters for the value variable 
 	public int getValue() {
 		return value;
 	}
