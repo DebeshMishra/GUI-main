@@ -15,11 +15,14 @@ public class Grid extends JPanel {
 	private final int MAX_DOTS = 100;
 	private final int DOT_DIAMETER = 5;
 
+	public DBSCAN dbscan;
+
 	private final int GRID_WIDTH = 720;
 	private final int GRID_HEIGHT = 720;
 
 	public int[][] xyPoints = new int[GRID_HEIGHT][GRID_WIDTH];
 	public ArrayList<int[]> dotCoordinates = new ArrayList<>();
+	public ArrayList<int[]> lineCoordinates = new ArrayList<>();
 
 	public void drawDots(Graphics2D g2){
 		for (int i = 0; i < dotCoordinates.size(); i++){
@@ -84,8 +87,9 @@ public class Grid extends JPanel {
 		}
 	}
 
-	public Grid(){
+	public Grid(DBSCAN dbscan){
 		super();
+		this.dbscan = dbscan;
 		dotCoordinates = new ArrayList<>();
 		repaint();
 		//generateCoordinates();
@@ -111,6 +115,13 @@ public class Grid extends JPanel {
 		//addDbScanButton();
 		//addRandomizeButton();
 		//addClearButton();
+		drawLines(g);
+	}
+
+	public void drawLines(Graphics g){
+		for (int[] a : lineCoordinates){
+			g.drawLine(a[0], a[1], a[2], a[3]);
+		}
 	}
 
 

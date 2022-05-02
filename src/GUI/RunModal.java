@@ -5,11 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class RunModal extends JDialog {
 
@@ -17,7 +13,7 @@ public class RunModal extends JDialog {
 	JTextField valueField = new JTextField(20);
 	int value;
 	
-	public RunModal(JFrame owner, String title) {
+	public RunModal(Grid panel, JFrame owner, String title) {
 		super(owner,title);
 		setBounds(100,100,300,150);
 		Container dialogContent = getContentPane();
@@ -33,6 +29,8 @@ public class RunModal extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setValue(Integer.parseInt(valueField.getText()));
 				RunModal.this.setVisible(false);
+				//call dbscan here
+				panel.dbscan.run(Integer.parseInt(valueField.getText()));
 			}
 		});
 	}

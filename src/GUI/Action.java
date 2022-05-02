@@ -42,13 +42,14 @@ class Action implements ActionListener {
         }
         if(e.getSource()==clear) {
         	panel.dotCoordinates = new ArrayList<>();
+            panel.lineCoordinates = new ArrayList<>();
 			panel.repaint();
         }
         if(e.getSource()==dbScan) {
-        	RunModal modal = new RunModal(frame,"Distance");
+        	RunModal modal = new RunModal(panel, frame,"Distance");
         	modal.setModal(true);
         	modal.setVisible(true);
-        	System.out.println("Distance entered "+modal.getValue());
+        	System.out.println("Distance entered " + modal.getValue());
         }
         if(e.getSource()==save) {
             JFileChooser fileChooser = new JFileChooser();

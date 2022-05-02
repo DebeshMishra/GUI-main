@@ -1,171 +1,62 @@
 package GUI;
 
-import java.util.Random;
+import javax.swing.*;
 import java.util.*;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class DBSCAN {
-	
-	int A= 10;
-	int B=10;
-    List<ArrayList<Integer>> points = new ArrayList<ArrayList<Integer>>();
-    List<ArrayList<Integer>> C = new ArrayList<ArrayList<Integer>>();
-    
-    List<List<ArrayList<Integer>>> test = new ArrayList<List<ArrayList<Integer>>>();
 
-    List<List<ArrayList<Integer>>> map = new ArrayList<List<ArrayList<Integer>>>();
+	private Grid panel;
+	private int distance;
 
-	
-	
-	public DBSCAN(int A, int B, double eps, int minPts) {
-				
-		Random rd = new Random();
-		
-		int[][] grid = new int[A][B];
-		
-		for (int x = 0; x < A; x++) {
-			
-				for(int y = 0; y < B; y++) {
-										
-					grid[x][y]= rd.nextInt(2);
-//					 System.out.println(grid[x][y]);
-					
-//					 System.out.println();
+	private int visitedCount = 0;
 
-					 
-					
-				}
-			  
-		}
-		
-//		double x1; 
-//		double y1; 
-//		double x2; 
-//		double y2;
-//		double distance;
-//		System.out.println("here");
-//		distance = Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+	private Queue<int[]> coordinateQueue = new LinkedList<>();
 
-		for (int x = 0; x < A; x++) {
-			
-			for(int y = 0; y < B; y++) {
-				
-				if(grid[x][y] == 1) {
-					
-			        ArrayList<Integer> temp = new ArrayList<Integer>();
-					temp.add(x);
-					temp.add(y);
-					points.add(temp);
-					
-					
-				}
-				
-			}
-			
-		}
-		
+	public DBSCAN(){
 
-
-		points.forEach((coordinate)  -> 
-        {
-            List<ArrayList<Integer>> map = new ArrayList<ArrayList<Integer>>();
-	        ArrayList<Integer> temp = new ArrayList<Integer>();
-	        temp.add(coordinate.get(0));
-	        temp.add(coordinate.get(1));
-	        map.add(temp);
-
-
-//    		System.out.print(coordinate);
-//    		System.out.print(coordinate.get(0));
-//    		System.out.print(" ");
-//    		System.out.print(coordinate.get(1));
-//    		System.out.println();
-    		
-        	
-	        
-//        	List<ArrayList<Integer>> pointNeighbors = new ArrayList<ArrayList<Integer>>();
-//	        List<ArrayList<Integer>> pointNeighbors = new ArrayList<ArrayList<Integer>>();
-
-
-
-	        points.forEach((neightboor)  -> 
-	        {
-	        	
-
-	    		double distance = Math.sqrt((neightboor.get(1) - coordinate.get(1)) * (neightboor.get(1) - 
-	    				coordinate.get(1)) + (neightboor.get(0) - coordinate.get(0)) * (neightboor.get(0) - coordinate.get(0)));
-	    		
-	    		
-//	    		System.out.print(distance);
-//	    		System.out.println();
-	    		
-	    		if(distance < eps && (coordinate.get(0) != neightboor.get(0) && coordinate.get(1) != neightboor.get(1) )) {
-	    			
-//	    			System.out.println("true");
-	    	        ArrayList<Integer> temp2 = new ArrayList<Integer>();
-
-	    	        temp2.add(neightboor.get(0));
-	    	        temp2.add(neightboor.get(1));
-	    			map.add(temp2);
-
-	    			
-	    		}
-	    		
-
-	        	
-	        });
-
-
-	        
-//	        System.out.println(map);
-//	        test.add(temp);
-	        
-	        if(map.size() > 1) {
-	        	
-		        test.add(map);
-
-	        	
-	        }
-//			map.add(pointNeighbors);
-
-//        	point.forEach((coordinate)->
-//        	
-//        		System.out.println(coordinate)	
-//        			
-//        			);
-        }
-                );
-		
-		
-		test.forEach((point)  -> 
-        {
-//        	System.out.println(point.size() - 1);
-//        	System.out.println(point);
-        	if(point.size() - 1 >= minPts) {
-        		map.add(point);
-        		
-        	}
-        	
-        	
-        });
-		
-		
-		
-		
-		map.forEach((point)  -> 
-        {
-        	System.out.println(point.size() - 1);
-//        	System.out.println(point);
-        	
-        	
-        });
-		
-		
-		
-		
-//		
-		
-
-		
 	}
-	
+
+
+	public void addPanel(Grid panel){
+		this.panel = panel;
+	}
+
+	public void run(int distance) {
+		visitedCount = 0;
+		boolean[] visited = new boolean[panel.dotCoordinates.size()];
+		while (visitedCount < panel.dotCoordinates.size() -1){
+			Random ran = new Random();
+			int x = ran.nextInt(panel.dotCoordinates.size()-1);
+
+			if(!visited[x]){
+				coordinateQueue.add(panel.dotCoordinates.get(x));
+				visited[x] = true;
+				visitedCount++;
+			}
+			// Your database code here
+			//keep going to neighbors
+			while(!coordinateQueue.isEmpty()){
+				//coordinates of the random dot selected
+				int[] selected = coordinateQueue.remove();
+				for (int i = 0; i < panel.dotCoordinates.size(); i++){
+					int[] a = panel.dotCoordinates.get(i);
+					//look at selected neighbors
+					double dist = Math.sqrt(Math.pow(Math.abs(a[0] - selected[0]),2) + Math.pow(Math.abs(a[1] - selected[1]), 2));
+					if (dist <= distance && !visited[i]){
+						//add them to visited
+						coordinateQueue.add(a);
+						visited[i] = true;
+						visitedCount++;
+						//draw a line between these two dots
+						panel.lineCoordinates.add(new int[]{a[0], a[1], selected[0], selected[1]});
+					}
+				}
+			}
+		}
+		panel.repaint();
+	}
+
+
 }

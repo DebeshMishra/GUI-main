@@ -8,10 +8,11 @@ public class Main {
     public static void main(String[] args) {
 
         //this code works and am currently running test
-        //DBSCAN test = new DBSCAN(10, 10, 3, 10);
+        DBSCAN dbscan = new DBSCAN();
 
         JFrame frame = new JFrame("Grid");
-        Grid panel = new Grid();
+        Grid panel = new Grid(dbscan);
+        dbscan.addPanel(panel);
         panel.setBorder(BorderFactory.createEmptyBorder(720, 720, 0, 0));
         panel.setLayout(new GridLayout(0, 1));
 
