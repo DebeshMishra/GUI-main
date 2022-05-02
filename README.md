@@ -1,3 +1,3 @@
 Java GUI for Clustering Algorithm 
 
-java -jar code.jar
+java -jar Grid.jar
