@@ -1,4 +1,5 @@
 Java GUI for Clustering Algorithm 
 
-to run:
+to run
+//
 java -jar GUI-main.jar
