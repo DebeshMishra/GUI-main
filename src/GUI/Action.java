@@ -38,6 +38,7 @@ class Action implements ActionListener {
             System.exit(0);
         if(e.getSource()==randomize) {
         	panel.generateCoordinates();
+        	panel.lineCoordinates = new ArrayList<>();
 			panel.repaint();
         }
         if(e.getSource()==clear) {
